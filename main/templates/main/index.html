@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Pizzeria{% endblock %}
+
+{% block body %}
+<div class="body">
+  <div class="container">
+    <div class="menu-container">
+      {% for pizza in pizza %}
+          <div class="menu_object">
+            <img class="pizza-photo" src="{{ pizza.photo.url }}" alt="">
+              <div class="pizza__info">
+                <h1 class="pizza-name">{{ pizza.title }}</h1>
+              <p class="weight">{{ pizza.weight }}g</p>
+              <p class="pizza-description">{{ pizza.content }}</p>
+              </div>
+              <div class="pizza__price-box">
+                    <p class="price">{{ pizza.price }}$</p>
+                  {% if pizza.photo %}
+    <!--                  <input type="text" class="quantity-input">-->
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <form class="add-cart-form" method="post" action="{% url 'add-cart' pizza.id %}">
+                      {% csrf_token %}
+                      {{ add_to_cart_form.as_p }}
+                      <button class="add-cart-btn" type="submit">Add to Cart</button>
+                  </form>
+                    {% endif %}
+              </div>
+          </div>
+      {% endfor %}
+      </div>
+  </div>
+</div>
+{% endblock %}

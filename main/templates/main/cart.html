@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block header %}
+<div class="header">
+    <a href="{% url 'home' %}"><img class="logo" src="{% static "main/img/pizza.png" %}" alt="pizza"></a>
+    <a href="{% url 'cart' %}" class="cart">Cart</a>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="main__inner">
+    <div class="cart-box">
+        {% if total_price != 0 %}
+      <h1>Your Cart</h1><br>
+      {% for item in cart_items %}
+          <div class="cart_item">
+              <h3>{{ item.pizza.title }}</h3>
+              <p>Price: ${{ item.price }}</p>
+
+              <div class="cart_item-content">
+                <form action="{% url 'remove_from_cart' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="remove-btn">-</button>
+                </form>
+              </div>
+          </div>
+          {% endfor %}
+            <p class="total__descr">Total Price: ${{ total_price }}</p>
+            <a href="{% url 'clear_cart' %}" class="clear-cart">Clear Cart</a>
+            <form action="{% url 'checkout' %}" method="POST" class="bottom__form">
+              {% csrf_token %}
+              <button type="submit" id="checkout-button">Checkout</button>
+            </form>
+        {% else %}
+        <h1>Your cart is empty</h1><br>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

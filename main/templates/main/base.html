@@ -1,0 +1,35 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a href="{% url 'home' %}"><img class="logo" src="{% static "main/img/pizza.png" %}" alt="pizza"></a>
+  {% if user.is_authenticated %}
+      <!-- If the user is logged in, then show his name, logout button and cart button -->
+      <div class="header__content">
+        <a href="{% url 'cart' %}" class="cart">Cart</a>
+      <p>Welcome, {{ user.username }}</p>
+      <a class="logout" href="{% url 'logout' %}">Logout</a>
+  {% else %}
+      <!-- If the user is not logged in, then show the login and registration buttons -->
+        <div class="header__content">
+          <a class="login-btn" href="{% url 'login' %}">Login</a>
+          <a class="register-btn" href="{% url 'registration' %}">Register</a>
+        </div>
+      </div>
+  {% endif %}
+    </div>
+  </div>
+</header>
+{% block body %}
+{% endblock %}
+</html>
