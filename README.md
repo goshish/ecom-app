@@ -4,7 +4,7 @@
 ### If desired, the theme of the site can be changed thanks to built-in templates and scaled thanks to PostgreSQL database.
 
 
-## Technology
+## Stack
 
 * Django
 * PostgreSQL
