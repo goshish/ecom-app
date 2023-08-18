@@ -18,28 +18,34 @@
 2. Clone repository:  ```git clone https://github.com/goshish/pizzeria.git ```
 3. To create a virtual environment, navigate to your project directory and execute:
    ``` python -m venv venv ```
-4. Install packages:
+4. Activate your 
+```venv\Scripts\activate.bat```- for Windows;
+```source venv/bin/activate```- for Linux and MacOS.
+5. Install packages:
 
      1. Go to pizzeria app: ```cd pizzeria```
    
      2. Install requirements.txt: ``` pip install -r requirements.txt ```
   
-5. Create a ```.env``` file in the root directory of the project with the following content:
+6. Create a ```.env``` file in the root directory of the project with the following content:
 ```
-STRIPE_PUBLIC_KEY=pk_test_51NW4KMC55Xf8DWWegIk3sL1xVMjGddmR7lUyvtsd7La6TG13BHhdr6d69L8W4UreYfULseQ0q1LIi8mKhCGNEK9i00nXSzW3F8
-STRIPE_SECRET_KEY=sk_test_51NW4KMC55Xf8DWWelMYwfegyfiPp7XOfBHSm3bEnE60XTf59IHiaGFGGrVYH4b7zHGJZM7Rpsz96C0BtimeKJtq500M1CbL8kX
+STRIPE_PUBLIC_KEY=your_public_key
+STRIPE_SECRET_KEY=your_secret_key
 
-success_url=http://127.0.0.1:8000/success/
-cancel_url=http://127.0.0.1:8000/cancel/
+success_url=your_success_url
+cancel_url=your_cancel_url
 
-SQL_ENGINE=django.db.backends.postgresql
-SQL_DATABASE=pizza
-SQL_USER=postgres
-SQL_PASSWORD=test
-SQL_HOST=localhost
-SQL_PORT=5432
+SQL_ENGINE=your_db_engine
+SQL_DATABASE=your_db_name
+SQL_USER=your_db_user
+SQL_PASSWORD=your_db_password
+SQL_HOST=your_host
+SQL_PORT=your_port
  ```
-4. Run server: ```python manage.py runserver```
+7. Make migrations
+   ```python manage.py makemigrations```
+   ```python manage.py migrate```
+10. Run server: ```python manage.py runserver```
 
 
 
